@@ -3,8 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
 	"net/http"
-
+	
 	"github.com/danielgtaylor/huma/v2"
 	"github.com/danielgtaylor/huma/v2/adapters/humachi"
 	"github.com/go-chi/chi/v5"
@@ -40,5 +41,7 @@ func main() {
 	})
 
 	// Start the server!
-	http.ListenAndServe("127.0.0.1:8888", router)
+	if err := http.ListenAndServe(":8888", router); err != nil {
+		log.Fatal(err)
+	}
 }
