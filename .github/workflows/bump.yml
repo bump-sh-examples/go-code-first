@@ -26,7 +26,7 @@ jobs:
         run: |
           go run . &
           sleep 10
-          wget http://127.0.0.1:8888/openapi.yaml
+          wget http://localhost:8888/openapi.yaml
 
       - name: Deploy API documentation
         uses: bump-sh/github-action@v1
@@ -50,7 +50,7 @@ jobs:
         run: |
           go run . &
           sleep 10
-          wget http://127.0.0.1:8888/openapi.yaml
+          wget http://localhost:8888/openapi.yaml
 
       - name: Comment pull request with API diff
         uses: bump-sh/github-action@v1
