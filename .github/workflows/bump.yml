@@ -47,7 +47,7 @@ jobs:
         uses: actions/setup-go@v5
       
       - name: Start server to download OpenAPI
-        run: go run . &
+        run: go run . & && sleep 5
 
       - name: Comment pull request with API diff
         uses: bump-sh/github-action@v1
