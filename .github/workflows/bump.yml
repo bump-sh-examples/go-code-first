@@ -22,11 +22,8 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
 
-      - name: Start server to download OpenAPI
-        run: |
-          go run . &
-          sleep 10 &&
-          wget http://localhost:8888/openapi.yaml
+      - name: Export OpenAPI to file
+        run: go run . openapi > openapi.yaml
 
       - name: Deploy API documentation
         uses: bump-sh/github-action@v1
@@ -46,15 +43,15 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
       
-      - name: Start server to download OpenAPI
-        run: go run . & && sleep 5
+      - name: Export OpenAPI to file
+        run: go run . openapi > openapi.yaml
 
       - name: Comment pull request with API diff
         uses: bump-sh/github-action@v1
         with:
           doc: go-hello-openapi
           token: ${{secrets.BUMP_TOKEN}}
-          file: http://localhost:8888/openapi.yaml
+          file: openapi.yaml
           command: diff
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
